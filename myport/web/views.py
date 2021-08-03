@@ -6,3 +6,6 @@ def index(request):
 
 def detail(request, write):
     return render(request, 'web/detail.html')
+
+def test(request):
+    return render(request, 'web/test.html')
