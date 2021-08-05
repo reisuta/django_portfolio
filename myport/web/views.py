@@ -2,6 +2,9 @@ from django.shortcuts import render
 from .forms import BungoTest
 
 # Create your views here.
+def base(request):
+    return render(request, 'web/base.html')
+    
 def index(request):
     params = {
         'title':'文豪性格診断',
@@ -10,7 +13,7 @@ def index(request):
         'link':'test',
         'link2':'list_bungo',
     }
-    return render(request, 'web/base.html',params)
+    return render(request, 'web/index.html',params)
 
 def list_bungo(request):
     params = {
