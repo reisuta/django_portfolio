@@ -11,7 +11,7 @@
 
     <ul class="nav justify-content-center">
         <li class="nav-item">
-          <a class="nav-link active" href="#!">Active</a>
+          <a class="nav-link active" href="{% url 'index' %}">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#!">Link</a>
@@ -20,50 +20,23 @@
           <a class="nav-link" href="#!">Link</a>
         </li>
       </ul>
+
+      <div style="margin-left: 10px;">
+      {{ques1}}<br><br>
+      {{ques2}}<br><br>
+      {{ques3}}<br><br>
+      {{ques4}}<br><br>
+      {{ques5}}<br><br>
+      5つの選択肢から(問題5だけ3択です)、最も近いものをそれぞれ選択してください。<br><br>
+    </div>
       
-      <form action="{% url link %}" method="POST">
+
+      <form action="{% url link %}" method="POST" style="margin-left: 10px;">
         {% csrf_token %}
-        {{forms}}
-        <div class="form-group">
-          <label for="formGroupExampleInput">{{questionnumber}}1、お酒をどの程度飲みますか？</label><br>
-          <select id="formGroupExampleInput" name="say" class="custom-select">
-            <option selected="">{{placeholderdes}}</option>
-            <option value="飲まない">飲まない</option>
-            <option value="2">週1、2回程度飲む</option>
-            <option value="3">ほとんど毎日飲む</option>
-            <option value="4">毎日飲まなきゃやってらんない。けれども本当は酒はあまり好きじゃない</option>
-            <option value="5">毎日飲まなきゃやってらんない。そして酒が大好き</option>
-          </select>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <label for="formGroupExampleInput">{{questionnumber}}2、お酒のことをどう思いますか？</label><br>
-            <select id="formGroupExampleInput" class="custom-select">
-              <option selected="">{{placeholderdes}}</option>
-              <option value="1">酒を飲むのは、自分に甘いからだと思う。</option>
-              <option value="2">酒は、人と付きあうために有効なツールにすぎないと思う。</option>
-              <option value="3">酒は、探究心を満たしてくれると思う。</option>
-              <option value="4">酒は、人生の縮図だと思う。</option>
-              <option value="5">酒を飲むのは、優しい人間だからだと思う。</option>
-            </select>
-          </div><br>
-
-          <div class="form-group">
-            <label for="formGroupExampleInput">{{questionnumber}}3、読書がどれぐらい好きで、どのような本を読みますか？</label><br>
-            <select id="formGroupExampleInput" class="custom-select">
-              <option selected="">{{placeholderdes}}</option>
-              <option value="1">本はそもそも読まない。理由は、本を読まずとも必要な知識を持っている自信があるから。</option>
-              <option value="2">本はそもそも読まない。理由は、勉強が嫌いだから。</option>
-              <option value="3">本は好きだ。主に漫画やエンタメ系を読む。</option>
-              <option value="4">本は好きだ。主にビジネス本や自己啓発を読む。理由はすぐに役に立ちそうだからだ。</option>
-              <option value="5">本は好きだ。主に歴史小説や日本の小説を読む。理由は日本に詳しくなりたい、もしくは日本が好きだからだ。</option>
-              <option value="6">本は好きでも嫌いでもない。文学や哲学といった「自己」について考えられる本しか読まない。</option>
-            </select>
-          </div>
-        <input type="submit" value="送信">
+        {{forms | linebreaksbr}}
+        <br><br>
+        <input type="submit" value="次へ">
       </form>
-      <a href="{% url 'index' %}">ホームへ戻る</a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
