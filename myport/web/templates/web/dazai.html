@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}太宰治タイプ{% endblock title%}
+{% block content %}
+
+<p class="lead text-primary m-2" style="font-weight: 500">
+    <br>{{description}}<br>
+</p>
+
+<blockquote class="blockquote blockquote-reverse">
+    <p class="mb-4" style="font-style: italic">{{citedes}}</p>
+    <footer class="blockquote-footer">{{citeauth}}</footer>
+</blockquote>
+<br>
+
+<div class="card m-2" style="width: 95%">
+    <div class="card-body">
+      <h4 class="card-title">{{feature}}</h4>
+      <p class="card-text">
+          {{pdes}}<br>
+          {{pdes2}}<br>
+          {{pdes3}}<br>
+          {{pdes4}}<br>
+          {{pdes5}}
+      </p>
+    </div>
+  </div>
+
+  <br>
+
+
+<div class="card m-2" style="width: 95%">
+    <div class="card-body">
+      <h4 class="card-title">{{whatauth}}</h4>
+      <p class="card-text">
+          {{authdes}}<br>
+          {{authdes2}}<br>
+          {{authdes3}}<br>
+          {{authdes4}}<br>
+      </p>
+    </div>
+  </div>
+
+  
+
+
+{% endblock%}

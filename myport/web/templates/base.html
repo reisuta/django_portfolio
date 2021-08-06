@@ -11,6 +11,19 @@
     <title>{% block title %} {% endblock title %}</title>
   </head>
   <body>
+
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link active" href="/index">ホーム</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/index/test">診断する</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/index/list_bungo">文豪一覧</a>
+      </li>
+    </ul>
+
       {% block content %}
     <h1>Hello, world!</h1>
 

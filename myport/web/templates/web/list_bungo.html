@@ -1,44 +1,29 @@
 {% extends 'base.html' %}
 {% block title %}文豪一覧{% endblock title %}
 {% block content %}
-<table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th>#</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-      </tr>
-    </tbody>
-  </table>
-  
+<br>
+<p class="lead">
+  {{description}}<br>
+  {{description2}}
+</p>
+<br>
 
-<div>
-<a href="">{{dazai}}</a><br>
-<a href="">{{akutagawa}}</a><br>
-<a href="">{{natume}}</a><br>
-<a href="">{{ougai}}</a><br>
-<a href="">{{itiyou}}</a><br>
-<a href="">{{siga}}</a><br>
-<a href="">{{saneatu}}</a><br>
-<a href="">{{tanizaki}}</a><br>
-<a href="">{{kahuu}}</a><br>
-<a href="">{{simada}}</a><br>
-<a href="">{{kikuti}}</a><br>
-<a href="">{{kazii}}</a><br>
-<a href="">{{bizan}}</a><br>
-<a href="">{{kouyou}}</a><br>
-<a href="">{{isizaka}}</a><br>
+
+<div class="list-group" style="width: 75%; margin-left:5px">
+  <a href="/index/test/dazai" class="list-group-item list-group-item-action list-group-item-dark text-white">{{dazai}}</a><br>
+  <a href="#!" class="list-group-item list-group-item-action list-group-item-success text-primary">{{natume}}</a><br>
+  <a href="#!" class="list-group-item list-group-item-action list-group-item-primary text-black">{{akutagawa}}</a><br>
+  <a href="#!" class="list-group-item list-group-item-action list-group-item-success text-info">{{ougai}}</a><br>
+  <a href="#!" class="list-group-item list-group-item-action list-group-item-warning text-black">{{itiyou}}</a><br>
+  <a href="#!" class="list-group-item list-group-item-action list-group-item-primary text-light">{{siga}}</a><br>
+  <a href="#!" class="list-group-item list-group-item-action list-group-item-danger text-black">{{saneatu}}</a><br>
+  <a href="#!" class="list-group-item list-group-item-action list-group-item-light text-info">{{tanizaki}}</a><br>
+  <a href="#!" class="list-group-item list-group-item-action list-group-item-warning text-danger">{{kahuu}}</a><br>
+  <a href="#!" class="list-group-item list-group-item-action list-group-item-dark text-black">{{simada}}</a><br>
+  <a href="#!" class="list-group-item list-group-item-action list-group-item-info text-primary">{{kikuti}}</a><br>
+  <a href="#!" class="list-group-item list-group-item-action list-group-item-warning text-info">{{kazii}}</a><br>
+  <a href="#!" class="list-group-item list-group-item-action list-group-item-light text-black">{{bizan}}</a><br>
+  <a href="/index" class="list-group-item list-group-item-action list-group-item-danger text-primary">{{kouyou}}</a><br>
+  <a href="#!" class="list-group-item list-group-item-action list-group-item-info text-black">{{isizaka}}</a><br>
 </div>
 {% endblock %}
