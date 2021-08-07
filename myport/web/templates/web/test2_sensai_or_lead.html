@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}{{title}}{% endblock title%}
+{% block content %}
+<div style="margin-left: 10px;">
+    {{ques1}}<br><br>
+    {{ques2}}<br><br>
+    {{ques3}}<br><br>
+    {{ques4}}<br><br>
+    {{ques5}}<br><br>
+    5つの選択肢から(問題5だけ3択です)、最も近いものをそれぞれ選択してください。<br><br>
+  </div>
+    
+
+    <form action="{% url link %}" method="POST" style="margin-left: 10px;">
+      {% csrf_token %}
+      {{forms | linebreaksbr}}
+      <br><br>
+      <input type="submit" value="次へ">
+    </form>
+
+{% endblock %}
