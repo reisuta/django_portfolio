@@ -21,4 +21,6 @@ urlpatterns = [
     path('test/saneatu',views.saneatu, name='saneatu'),
     path('test/tanizaki',views.tanizaki, name='tanizaki'),
     path('test/kahuu',views.kahuu, name='kahuu'),
+    path('test/simada',views.simada, name='simada'),
+    path('test/kikuti',views.kikuti, name='kikuti'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
