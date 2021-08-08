@@ -41,11 +41,11 @@ def list_bungo(request):
 def test(request):
     params = {
         'title':'診断ページ1/3',
-        'ques1':'問題1:お酒はどれぐらい飲みますか？',
-        'ques2':'問題2:お酒のことをどう思いますか？',
-        'ques3':'問題3:読書がどれぐらい好きで、どのような本を読みますか？',
+        'ques1':'問題1:お酒を飲む頻度とそのスタイルを教えてください',
+        'ques2':'問題2:どの思想に共感しますか？',
+        'ques3':'問題3:世間で言われるところの「常識」についてどう思いますか？',
         'ques4':'問題4:今まで「「私」とは何か？」と、自問したことはどれぐらいありましたか？',
-        'ques5':'問題5:ずばり、あなたは文学が好きですか？',
+        'ques5':'問題5:好きな本のタイプを教えてください。',
         'placeholderdes':'次の選択肢の中から一つ選んでください。',
         'message':'message',
         'forms':BungoTest(),
@@ -66,11 +66,11 @@ def test2(request):
         'ques5':request.POST['ques5'],
         'ques_val':int(request.POST['ques1']) + int(request.POST['ques2']) + int(request.POST['ques3']) + int(request.POST['ques4']) + int(request.POST['ques5'])
     }
-    if params['ques_val']==0:
+    if params['ques_val']<25:
         params = {
-            'title':'診断ページ2/3',
-            'ques1':'問題1:恋愛についてどう思いますか？',
-            'ques2':'問題2:集団の中であなたはどういう立ち位置にあることが多いですか？',
+            'title':'診断ページ2/3(一般人）',
+            'ques1':'問題1:どのようにして仕事を進めることが多いですか？',
+            'ques2':'問題2:理想的な仕事のペースはどの程度ですか？',
             'ques3':'問題3:同僚に自分の考えや思いを伝えなければならないとき、どうしますか？',
             'ques4':'問題4:年老いたら何がしたいですか？',
             'ques5':'問題5:あなたは書店で「悲愴で平和な僕の日常」という本を見つけました。どう思いますか？',
@@ -82,7 +82,7 @@ def test2(request):
         return render(request, 'web/test2_lead_or_seiyoku.html',params)
     
     params = {
-        'title':'診断ページ2/3',
+        'title':'診断ページ2/3（文豪）',
         'ques1':'問題1:自分は変わり者だと思いますか？',
         'ques2':'問題2:あなたが最も嫌いなものを教えてください。',
         'ques3':'問題3:あなたが興味があることをおしえてください。',
@@ -123,9 +123,9 @@ def test3a(request):
         'title':'性欲高めタイプ',
         'ques1':'問題1:今までどれぐらいの人と恋愛してきましたか？',
         'ques2':'問題2:「ありきたりな恋愛」とは、人間の男女が恋愛関係に陥ることをいいます。この「ありきたりな恋愛」についてどう思いますか？',
-        'ques3':'問題3:溢れ出る性欲を思う存分発散しますか？我慢しますか？',
-        'ques4':'問題4:好きな人をどうしたいですか？',
-        'ques5':'問題5:精神的な恋愛と肉体的な恋愛。どちらを体験したいですか？',
+        'ques3':'問題3:運動と勉強が苦手な友達がいます。この友達に対してどう思いますか？',
+        'ques4':'問題4:空想や思索に、どれぐらいふけることが多いですか？',
+        'ques5':'問題5:友人の余命をあなただけが知っています。友人はあなたに、「余命はどれぐらい？」尋ねました。どうしますか？',
         'placeholderdes':'次の選択肢の中から一つ選んでください。',
         'message':'message',
         'forms':Test3a_b(),
@@ -143,19 +143,19 @@ def result_3ab(request):
         'ques_val':int(request.POST['ques1']) + int(request.POST['ques2']) + int(request.POST['ques3']) + int(request.POST['ques4']) + int(request.POST['ques5'])
     }
     if params['ques1']=='10':
-        return ougai(request)
+        return kahuu(request)
 
     if params['ques2']=='5':
         return ranpo(request)
     
     if params['ques3']=='10':
-        return kahuu(request)
+        return tanizaki(request)
 
     if params['ques4']=='10':
-        return tanizaki(request)
-    elif params['ques4']=='5':
         return ranpo(request)
 
+    if params['ques5']=='10':
+        return saneatu(request)
 
     return akutagawa(request)
 
