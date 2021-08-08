@@ -11,6 +11,7 @@ urlpatterns = [
     path('test/test2/',views.test2, name='test2'),
     path('test/test2/test3/',views.test3a, name='test3a'),
     path('test/test2/test3/',views.test3a, name='test3b'),
+    path('test/result/',views.result_3aa, name='result_3aa'),
     path('test/result/',views.result_3ab, name='result_3ab'),
     path('test/dazai',views.dazai, name='dazai'),
     path('test/natume',views.natume, name='natume'),

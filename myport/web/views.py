@@ -71,9 +71,9 @@ def test2(request):
             'title':'診断ページ2/3(一般人）',
             'ques1':'問題1:どのようにして仕事を進めることが多いですか？',
             'ques2':'問題2:理想的な仕事のペースはどの程度ですか？',
-            'ques3':'問題3:同僚に自分の考えや思いを伝えなければならないとき、どうしますか？',
-            'ques4':'問題4:年老いたら何がしたいですか？',
-            'ques5':'問題5:あなたは書店で「悲愴で平和な僕の日常」という本を見つけました。どう思いますか？',
+            'ques3':'問題3:どのように話すことが多いですか？',
+            'ques4':'問題4:あなたは一億円を手に入れました。何に使いますか？',
+            'ques5':'問題5:友人は多いですか？',
             'placeholderdes':'次の選択肢の中から一つ選んでください。',
             'message':'message',
             'forms':Test2_a(),
@@ -96,6 +96,7 @@ def test2(request):
     return render(request, 'web/test2_sensai_or_lead.html',params)
 
 def test3a(request):
+    """一般人タイプのパターン"""
     params = {
         'ques1':request.POST['ques1'],
         'ques2':request.POST['ques2'],
@@ -104,34 +105,66 @@ def test3a(request):
         'ques5':request.POST['ques5'],
         'ques_val':int(request.POST['ques1']) + int(request.POST['ques2']) + int(request.POST['ques3']) + int(request.POST['ques4']) + int(request.POST['ques5'])
     }
-    if params['ques_val']==0:
+    if params['ques_val']>=30:
         params = {
-            'title':'月並みパターン',
-            'ques1':'問題1:勉強はどの程度得意ですか？',
-            'ques2':'問題2:どのように仕事を進めますか？',
-            'ques3':'問題3:喧嘩は強いですか？',
-            'ques4':'問題4:部下はたくさんほしいですか？',
-            'ques5':'問題5:正直なタイプですか？',
+            'title':'リーダーパターン',
+            'ques1':'問題1:部下が遅刻してきました。どうしますか？',
+            'ques2':'問題2:どの考えに共感しますか？',
+            'ques3':'問題3:どれを重視しますか？',
+            'ques4':'問題4:嫌いなものはどれですか？',
+            'ques5':'問題5:部下があなたに誕生日プレゼントを買ってくれました。どうしますか？',
             'placeholderdes':'次の選択肢の中から一つ選んでください。',
             'message':'message',
             'forms':Test3a_a(),
-            'link':'test3a',
+            'link':'result_3aa',
         }
         return render(request, 'web/test3a_a.html',params)
 
     params = {
-        'title':'性欲高めタイプ',
-        'ques1':'問題1:今までどれぐらいの人と恋愛してきましたか？',
-        'ques2':'問題2:「ありきたりな恋愛」とは、人間の男女が恋愛関係に陥ることをいいます。この「ありきたりな恋愛」についてどう思いますか？',
-        'ques3':'問題3:運動と勉強が苦手な友達がいます。この友達に対してどう思いますか？',
-        'ques4':'問題4:空想や思索に、どれぐらいふけることが多いですか？',
-        'ques5':'問題5:友人の余命をあなただけが知っています。友人はあなたに、「余命はどれぐらい？」尋ねました。どうしますか？',
+        'title':'マイペースタイプ',
+        'ques1':'問題1:上司に給料の値上げを頼もうとしています。どのように頼みますか？',
+        'ques2':'問題2:趣味はなんですか？',
+        'ques3':'問題3:理想的な生き方について教えてください',
+        'ques4':'問題4:好きなものはどれですか？',
+        'ques5':'問題5:あなたの性格の強みを教えてください',
         'placeholderdes':'次の選択肢の中から一つ選んでください。',
         'message':'message',
         'forms':Test3a_b(),
         'link':'result_3ab',
     }
     return render(request, 'web/test3a_b.html',params)
+
+def result_3aa(request):
+    params = {
+        'ques1':request.POST['ques1'],
+        'ques2':request.POST['ques2'],
+        'ques3':request.POST['ques3'],
+        'ques4':request.POST['ques4'],
+        'ques5':request.POST['ques5'],
+        'ques_val':int(request.POST['ques1']) + int(request.POST['ques2']) + int(request.POST['ques3']) + int(request.POST['ques4']) + int(request.POST['ques5'])
+    }
+    if params['ques1']=='10':
+        return kouyou(request)
+
+    if params['ques2']=='10':
+        return kikuti(request)
+    elif params['ques2']=='3':
+        return natume(request)
+    
+    if params['ques3']=='10':
+        return kouyou(request)
+    elif params['ques3']=='5':
+        return siga(request)
+
+    if params['ques4']=='10':
+        return kikuti(request)
+    elif params['ques4']=='5':
+        return siga(request)
+    elif params['ques4']=='3':
+        return kouyou(request)
+    else:
+        return natume(request)
+
 
 def result_3ab(request):
     params = {
@@ -143,21 +176,29 @@ def result_3ab(request):
         'ques_val':int(request.POST['ques1']) + int(request.POST['ques2']) + int(request.POST['ques3']) + int(request.POST['ques4']) + int(request.POST['ques5'])
     }
     if params['ques1']=='10':
-        return kahuu(request)
+        return saneatu(request)
 
-    if params['ques2']=='5':
+    if params['ques2']=='10':
         return ranpo(request)
     
     if params['ques3']=='10':
-        return tanizaki(request)
+        return kahuu(request)
 
     if params['ques4']=='10':
+        return ougai(request)
+    elif params['ques4']=='7':
+        return kahuu(request)
+    elif params['ques4']=='5':
         return ranpo(request)
+    elif params['ques4']=='3':
+        return saneatu(request)
 
     if params['ques5']=='10':
         return saneatu(request)
-
-    return akutagawa(request)
+    elif params['ques5']=='5':
+        return ougai(request)
+    else:
+        return ranpo(request)
 
 def dazai(request):
     params = {
