@@ -3,7 +3,7 @@ from .forms import BungoTest, Test2_a, Test2_b, Test3a_a, Test3a_b, Test3b_a, Te
 
 # Create your views here.
 def base(request):
-    return render(request, 'web/base.html')
+    return render(request, 'base.html')
     
 def index(request):
     params = {
@@ -162,11 +162,11 @@ def test3b(request):
 
     params = {
         'title':'繊細タイプ',
-        'ques1':'問題1:電車に乗っている際、何を感じることが多いですか？',
-        'ques2':'問題2:趣味はなんですか？',
-        'ques3':'問題3:理想的な生き方について教えてください',
-        'ques4':'問題4:好きなものはどれですか？',
-        'ques5':'問題5:あなたの性格の強みを教えてください',
+        'ques1':'問題1:友人と喧嘩しました。どのような友人で、どのように仲直りしますか？',
+        'ques2':'問題2:将来どうなりたいですか？',
+        'ques3':'問題3:電車に乗っている際、何を感じることが多いですか？',
+        'ques4':'問題4:9才の妹が人生で大切なことは何？と質問してきました。どのように答えますか？',
+        'ques5':'問題5:議論は得意ですか？',
         'placeholderdes':'次の選択肢の中から一つ選んでください。',
         'message':'message',
         'forms':Test3b_b(),
@@ -282,27 +282,29 @@ def result_3bb(request):
         'ques5':request.POST['ques5'],
         'ques_val':int(request.POST['ques1']) + int(request.POST['ques2']) + int(request.POST['ques3']) + int(request.POST['ques4']) + int(request.POST['ques5'])
     }
-    if params['ques1']=='10':
-        return kouyou(request)
-
-    if params['ques2']=='10':
-        return kikuti(request)
-    elif params['ques2']=='3':
-        return natume(request)
+    
     
     if params['ques3']=='10':
-        return kouyou(request)
-    elif params['ques3']=='5':
-        return siga(request)
+        return dazai(request)
+    
+    
+    if params['ques1']=='10':
+        return tanizaki(request)
+
+    if params['ques2']=='10':
+        return itiyou(request)
+    
+    if params['ques5']=='10':
+        return akutagawa(request)
 
     if params['ques4']=='10':
-        return kikuti(request)
+        return dazai(request)
     elif params['ques4']=='5':
-        return siga(request)
+        return tanizaki(request)
     elif params['ques4']=='3':
-        return kouyou(request)
+        return itiyou(request)
     else:
-        return natume(request)
+        return akutagawa(request)
 
 
 def dazai(request):
