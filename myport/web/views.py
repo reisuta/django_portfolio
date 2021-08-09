@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import BungoTest, Test2_a, Test2_b, Test3a_a, Test3a_b
+from .forms import BungoTest, Test2_a, Test2_b, Test3a_a, Test3a_b, Test3b_a, Test3b_b
 
 # Create your views here.
 def base(request):
@@ -83,9 +83,9 @@ def test2(request):
     
     params = {
         'title':'診断ページ2/3（文豪）',
-        'ques1':'問題1:自分は変わり者だと思いますか？',
+        'ques1':'問題1:あなたが考える「変わり者」とはなんですか？',
         'ques2':'問題2:あなたが最も嫌いなものを教えてください。',
-        'ques3':'問題3:あなたが興味があることをおしえてください。',
+        'ques3':'問題3:あなたが考える「化け物」とはなんですか？',
         'ques4':'問題4:煩悶、憂愁、懊悩。これらの言葉についてどう思いますか？',
         'ques5':'問題5:あなたを助けるものはなんですか？',
         'placeholderdes':'次の選択肢の中から一つ選んでください。',
@@ -133,6 +133,46 @@ def test3a(request):
         'link':'result_3ab',
     }
     return render(request, 'web/test3a_b.html',params)
+
+
+def test3b(request):
+    """文豪タイプのパターン"""
+    params = {
+        'ques1':request.POST['ques1'],
+        'ques2':request.POST['ques2'],
+        'ques3':request.POST['ques3'],
+        'ques4':request.POST['ques4'],
+        'ques5':request.POST['ques5'],
+        'ques_val':int(request.POST['ques1']) + int(request.POST['ques2']) + int(request.POST['ques3']) + int(request.POST['ques4']) + int(request.POST['ques5'])
+    }
+    if params['ques_val']>=15:
+        params = {
+            'title':'超希少パターン',
+            'ques1':'問題1:あなたが不快に感じるものはなんですか？',
+            'ques2':'問題2:人生でどうしても成し遂げたいことがありますが、それは自身の生活を犠牲にしなければ叶わないものでした。どうしますか？',
+            'ques3':'問題3:理想的な死とはなんですか？',
+            'ques4':'問題4:日々、何を感じることが多いですか？',
+            'ques5':'問題5:精神病院についてどう考えますか？',
+            'placeholderdes':'次の選択肢の中から一つ選んでください。',
+            'message':'message',
+            'forms':Test3b_a(),
+            'link':'result_3ba',
+        }
+        return render(request, 'web/test3b_a.html',params)
+
+    params = {
+        'title':'繊細タイプ',
+        'ques1':'問題1:電車に乗っている際、何を感じることが多いですか？',
+        'ques2':'問題2:趣味はなんですか？',
+        'ques3':'問題3:理想的な生き方について教えてください',
+        'ques4':'問題4:好きなものはどれですか？',
+        'ques5':'問題5:あなたの性格の強みを教えてください',
+        'placeholderdes':'次の選択肢の中から一つ選んでください。',
+        'message':'message',
+        'forms':Test3b_b(),
+        'link':'result_3bb',
+    }
+    return render(request, 'web/test3b_b.html',params)
 
 def result_3aa(request):
     params = {
@@ -199,6 +239,71 @@ def result_3ab(request):
         return ougai(request)
     else:
         return ranpo(request)
+
+def result_3ba(request):
+    params = {
+        'ques1':request.POST['ques1'],
+        'ques2':request.POST['ques2'],
+        'ques3':request.POST['ques3'],
+        'ques4':request.POST['ques4'],
+        'ques5':request.POST['ques5'],
+        'ques_val':int(request.POST['ques1']) + int(request.POST['ques2']) + int(request.POST['ques3']) + int(request.POST['ques4']) + int(request.POST['ques5'])
+    }
+    
+    if params['ques5']=='10':
+        return simada(request)
+
+    if params['ques3']=='10':
+        return simada(request)
+    
+    if params['ques2']=='10':
+        return zenzou(request)
+    
+    if params['ques3']=='5':
+        return bizan(request)
+
+    if params['ques4']=='5':
+        return kazii(request)
+    elif params['ques4']=='7':
+        return bizan(request)
+    elif params['ques4']=='3':
+        return zenzou(request)
+    
+    return kazii(request)
+
+  
+#これからやる
+def result_3bb(request):
+    params = {
+        'ques1':request.POST['ques1'],
+        'ques2':request.POST['ques2'],
+        'ques3':request.POST['ques3'],
+        'ques4':request.POST['ques4'],
+        'ques5':request.POST['ques5'],
+        'ques_val':int(request.POST['ques1']) + int(request.POST['ques2']) + int(request.POST['ques3']) + int(request.POST['ques4']) + int(request.POST['ques5'])
+    }
+    if params['ques1']=='10':
+        return kouyou(request)
+
+    if params['ques2']=='10':
+        return kikuti(request)
+    elif params['ques2']=='3':
+        return natume(request)
+    
+    if params['ques3']=='10':
+        return kouyou(request)
+    elif params['ques3']=='5':
+        return siga(request)
+
+    if params['ques4']=='10':
+        return kikuti(request)
+    elif params['ques4']=='5':
+        return siga(request)
+    elif params['ques4']=='3':
+        return kouyou(request)
+    else:
+        return natume(request)
+
 
 def dazai(request):
     params = {
